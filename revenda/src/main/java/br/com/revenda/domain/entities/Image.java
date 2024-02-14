@@ -31,7 +31,7 @@ public class Image {
     private Long size;
 
     @Column
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private ImagensExtesion extension;
 
     @Column
