@@ -14,8 +14,6 @@ import java.util.List;
 public class ImageMapper {
 
     public Image mapToImage(MultipartFile file , String name , List<String> tags) throws IOException {
-
-
         Image image = Image.builder()
                 .name(name)
                 .tags(String.join(",",tags))
@@ -23,7 +21,6 @@ public class ImageMapper {
                 .extension(ImagensExtesion.valueOf(MediaType.valueOf(file.getContentType())))
                 .file(file.getBytes())
                 .build();
-
         return image;
 
     }

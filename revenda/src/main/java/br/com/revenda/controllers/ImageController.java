@@ -46,12 +46,25 @@ public class ImageController {
         Image nImage = imageService.getById(id).orElse(null);
         if (!id.isEmpty()){
             imageService.delete(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(nImage);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    //Return image in URL
+    @PutMapping("/newImage/{id}")
+    public ResponseEntity UpdateImage(@RequestParam ("file") MultipartFile file,
+                               @RequestParam ("name") String name,
+                               @RequestParam ("tags") List <String> tags,
+                               @PathVariable String id) throws IOException{
+
+        Image image = imageMapper.mapToImage(file,name,tags);
+        Image savedImage = imageService.save(image);
+        URI imageURI = ImageBuildURI(savedImage);
+        return  ResponseEntity.created(imageURI).build();
+
+    }
+
+    //
     @GetMapping("{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable String id){
         var possibleImage = imageService.getById(id);

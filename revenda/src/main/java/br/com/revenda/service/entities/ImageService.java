@@ -34,9 +34,9 @@ public  class ImageService implements ICRUD <Image ,String> {
 
     }
 
-    @Override
-    public List getAll() {
-        return null;
+    public List<Image> getAll() {
+        List <Image> images = imageRepository.findAll();
+        return images;
     }
 
     @Override
