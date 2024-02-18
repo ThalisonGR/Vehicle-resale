@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public  class ImageService implements ICRUD <Image ,String> {
@@ -36,5 +37,10 @@ public  class ImageService implements ICRUD <Image ,String> {
     @Override
     public List getAll() {
         return null;
+    }
+
+    @Override
+    public Optional<Image> getById(String id){
+        return imageRepository.findById(id);
     }
 }

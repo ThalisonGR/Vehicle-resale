@@ -1,5 +1,6 @@
 package br.com.revenda.domain.enums;
 
+import lombok.Getter;
 import org.springframework.http.MediaType;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ public enum ImagensExtesion {
      PNG(MediaType.IMAGE_PNG),
      GIF(MediaType.IMAGE_GIF);
 
+     @Getter
      private  MediaType mediaType;
 
      ImagensExtesion(MediaType mediaType) {
