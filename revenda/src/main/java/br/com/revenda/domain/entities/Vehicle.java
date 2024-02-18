@@ -1,5 +1,6 @@
 package br.com.revenda.domain.entities;
 
+import br.com.revenda.dto.VehicleDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "vehicle")
+@Table(name = "tb_vehicle")
 public class Vehicle {
 
     @Id
@@ -37,11 +38,21 @@ public class Vehicle {
     @Column(length = 10 , unique = true , nullable = false)
     String plate_vehicle;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(nullable = false )
     CategoryVehicle categoryVehicle;
 
     @CreatedDate
     Date date_register_vehicle;
 
 
+    public Vehicle(VehicleDTO vehicleDTO) {
+        this.brand = vehicleDTO.brand();
+        this.n_doors = vehicleDTO.n_doors();
+        this.motorcycle_literacy = vehicleDTO.motorcycle_literacy();
+        this.price_vehicle = vehicleDTO.price_vehicle();
+        this.plate_vehicle = vehicleDTO.plate_vehicle();
+        this.categoryVehicle = vehicleDTO.categoryVehicle();
+        this.date_register_vehicle = vehicleDTO.date_register_vehicle();
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.revenda.domain.entities;
 
+import br.com.revenda.dto.CategoryVehicleDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "category_vehicle")
+@Table(name = "tb_category_vehicle")
 public class CategoryVehicle {
 
     @Id
@@ -20,4 +21,8 @@ public class CategoryVehicle {
 
     @Column(length = 10 , unique = true , nullable = false)
     private String name_catergory;
+
+    public CategoryVehicle(CategoryVehicleDTO categoryVehicleDTO) {
+        this.name_catergory = categoryVehicleDTO.name_catergory();
+    }
 }
