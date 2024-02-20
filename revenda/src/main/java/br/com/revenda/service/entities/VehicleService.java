@@ -3,9 +3,11 @@ package br.com.revenda.service.entities;
 import br.com.revenda.domain.entities.Vehicle;
 import br.com.revenda.dto.VehicleDTO;
 import br.com.revenda.service.interfaces.ICRUD;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class VehicleService implements ICRUD <Vehicle , String , VehicleDTO> {
 
     @Override

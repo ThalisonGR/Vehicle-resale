@@ -11,6 +11,6 @@ public interface ICRUD <T,S ,R> {
 
     T save (R object);
     void  delete(S id);
-    T update(String id , R Object);
+    T update(S id , R Object);
     Optional <T> getById(S id);
 }
