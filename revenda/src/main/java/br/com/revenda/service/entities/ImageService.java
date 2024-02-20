@@ -25,7 +25,7 @@ import java.util.Optional;
     }
 
     @Override
-    public Image update(Image id, Image object) {
+    public Image update(String id, Image object) {
         return null;
     }
 

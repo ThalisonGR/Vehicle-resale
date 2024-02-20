@@ -6,25 +6,25 @@ import br.com.revenda.service.interfaces.ICRUD;
 
 import java.util.Optional;
 
-public class VehicleService implements ICRUD <VehicleDTO , Vehicle , String> {
+public class VehicleService implements ICRUD <Vehicle , String , VehicleDTO> {
 
     @Override
-    public VehicleDTO save(VehicleDTO object) {
+    public Vehicle save(VehicleDTO vehicleDTO) {
         return null;
     }
 
     @Override
-    public VehicleDTO update(VehicleDTO id, String object) {
+    public Vehicle update(String id, VehicleDTO vehicleDTO) {
         return null;
     }
 
     @Override
-    public void delete(Vehicle id) {
+    public void delete(String id) {
 
     }
 
     @Override
-    public Optional<VehicleDTO> getById(Vehicle id) {
+    public Optional<Vehicle> getById(String id) {
         return Optional.empty();
     }
 }

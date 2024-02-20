@@ -11,7 +11,7 @@ public class CategoryVehicleService implements ICRUD {
     }
 
     @Override
-    public Object update(Object id, Object object) {
+    public Object update(String id, Object object) {
         return null;
     }
 
