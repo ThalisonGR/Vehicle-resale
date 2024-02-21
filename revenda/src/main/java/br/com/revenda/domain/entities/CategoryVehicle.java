@@ -19,7 +19,7 @@ public class CategoryVehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Not
+
     @Column(length = 10 , unique = true , nullable = false)
     private String name_category;
 
