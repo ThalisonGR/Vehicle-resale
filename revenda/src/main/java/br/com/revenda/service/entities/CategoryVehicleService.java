@@ -6,6 +6,7 @@ import br.com.revenda.respository.CategoryVehicleRepository;
 import br.com.revenda.service.interfaces.ICRUD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public class CategoryVehicleService implements ICRUD <CategoryVehicle , Integer 
     @Autowired
     CategoryVehicleRepository categoryVehicleRepository;
 
+    @Transactional
     @Override
     public CategoryVehicle save(CategoryVehicleDTO categoryVehicleDTO) {
         try {
@@ -28,11 +30,13 @@ public class CategoryVehicleService implements ICRUD <CategoryVehicle , Integer 
         return null;
     }
 
+    @Transactional
     @Override
     public void delete(Integer id) {
         categoryVehicleRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public CategoryVehicle update(Integer id, CategoryVehicleDTO categoryVehicleDTO) {
        CategoryVehicle categoryVehicle = getByIdNotOptional(id);
@@ -42,12 +46,14 @@ public class CategoryVehicleService implements ICRUD <CategoryVehicle , Integer 
 
     }
 
+    @Transactional
     @Override
     public Optional<CategoryVehicle> getById(Integer id) {
         Optional<CategoryVehicle> categoryVehicle  = categoryVehicleRepository.findById(id);
         return categoryVehicle;
     }
 
+    @Transactional
     public CategoryVehicle getByIdNotOptional(Integer id){
         CategoryVehicle  categoryVehicle = categoryVehicleRepository.findById(id).orElse(null);
         return categoryVehicle;
