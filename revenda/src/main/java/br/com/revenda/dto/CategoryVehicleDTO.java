@@ -1,4 +1,4 @@
 package br.com.revenda.dto;
 
-public record CategoryVehicleDTO(String name_catergory) {
+public record CategoryVehicleDTO(String name_category) {
 }

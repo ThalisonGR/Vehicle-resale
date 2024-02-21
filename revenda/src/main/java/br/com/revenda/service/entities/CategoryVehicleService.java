@@ -19,15 +19,9 @@ public class CategoryVehicleService implements ICRUD <CategoryVehicle , Integer 
     @Transactional
     @Override
     public CategoryVehicle save(CategoryVehicleDTO categoryVehicleDTO) {
-        try {
             CategoryVehicle categoryVehicle = new CategoryVehicle(categoryVehicleDTO);
             categoryVehicleRepository.save(categoryVehicle);
             return categoryVehicle;
-        }catch (Exception e){
-            e.getMessage();
-        }
-
-        return null;
     }
 
     @Transactional
@@ -40,7 +34,7 @@ public class CategoryVehicleService implements ICRUD <CategoryVehicle , Integer 
     @Override
     public CategoryVehicle update(Integer id, CategoryVehicleDTO categoryVehicleDTO) {
        CategoryVehicle categoryVehicle = getByIdNotOptional(id);
-       categoryVehicle.setName_catergory(categoryVehicleDTO.name_catergory());
+       categoryVehicle.setName_category(categoryVehicleDTO.name_category());
        categoryVehicleRepository.save(categoryVehicle);
        return categoryVehicle;
 
