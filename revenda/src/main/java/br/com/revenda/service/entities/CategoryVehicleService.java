@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 @Service
@@ -21,16 +22,19 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
             CategoryVehicle categoryVehicle = new CategoryVehicle(categoryVehicleDTO);
             categoryVehicleRepository.save(categoryVehicle);
             return categoryVehicle;
-            s
         }catch (Exception e){
-            logger.info("CategoryVehicleService: " + e.getMessage());
+            logger.info("CategoryVehicleService: Save : " + e.getMessage());
         }
         return  null;
     }
 
     @Override
     public void delete(Integer id) {
-
+        try {
+            categoryVehicleRepository.deleteById(id);
+        }catch (Exception e){
+            logger.info("CategoryVehicleService: Delete : " + e.getMessage());
+        }
     }
 
     @Override
