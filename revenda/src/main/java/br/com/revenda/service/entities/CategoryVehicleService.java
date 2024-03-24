@@ -21,6 +21,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
         try {
             CategoryVehicle categoryVehicle = new CategoryVehicle(categoryVehicleDTO);
             categoryVehicleRepository.save(categoryVehicle);
+            logger.info("Save sucess");
             return categoryVehicle;
         }catch (Exception e){
             logger.info("CategoryVehicleService: Save : " + e.getMessage());
@@ -38,12 +39,28 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     }
 
     @Override
-    public CategoryVehicle update(String id, CategoryVehicleDTO Object) {
+    public CategoryVehicle update(Integer id, CategoryVehicleDTO categoryVehicleDTO) {
+        try {
+            CategoryVehicle categoryVehicle = getById(id);
+            categoryVehicle.setName_catergory(categoryVehicleDTO.name_catergory());
+            categoryVehicleRepository.save(categoryVehicle);
+            logger.info("Update sucess");
+            return categoryVehicle;
+        }catch (Exception e){
+            logger.info("CategoryVehicleService: Update : " + e.getMessage());
+        }
         return null;
     }
 
     @Override
-    public Optional<CategoryVehicle> getById(Integer id) {
-        return Optional.empty();
+    public CategoryVehicle getById(Integer id) {
+        try {
+            CategoryVehicle  categoryVehicle= getById(id);
+            logger.info("GetByID sucess");
+            return categoryVehicle;
+        }catch (Exception e){
+            logger.info("CategoryVehicleService: getByID : " + e.getMessage());
+        }
+        return null;
     }
 }

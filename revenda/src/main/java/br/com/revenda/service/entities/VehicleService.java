@@ -14,7 +14,7 @@ public class VehicleService implements ICRUD <Vehicle , String , VehicleDTO> {
     }
 
     @Override
-    public Vehicle update(String id, VehicleDTO vehicleDTO) {
+    public Vehicle update(Integer id, VehicleDTO vehicleDTO) {
         return null;
     }
 
@@ -24,7 +24,7 @@ public class VehicleService implements ICRUD <Vehicle , String , VehicleDTO> {
     }
 
     @Override
-    public Optional<Vehicle> getById(String id) {
-        return Optional.empty();
+    public Vehicle getById(String id) {
+        return null;
     }
 }
