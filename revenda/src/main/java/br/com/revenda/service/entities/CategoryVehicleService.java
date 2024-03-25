@@ -7,6 +7,7 @@ import br.com.revenda.service.interfaces.ICRUD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
             logger.info("Save sucess");
             return categoryVehicle;
         }catch (Exception e){
-            logger.info("CategoryVehicleService: Save : " + e.getMessage());
+           e.getMessage();
         }
         return  null;
     }
@@ -42,7 +43,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     public CategoryVehicle update(Integer id, CategoryVehicleDTO categoryVehicleDTO) {
         try {
             CategoryVehicle categoryVehicle = getById(id);
-            categoryVehicle.setName_catergory(categoryVehicleDTO.name_catergory());
+            categoryVehicle.setName_category(categoryVehicleDTO.name_category());
             categoryVehicleRepository.save(categoryVehicle);
             logger.info("Update sucess");
             return categoryVehicle;
@@ -62,5 +63,10 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
             logger.info("CategoryVehicleService: getByID : " + e.getMessage());
         }
         return null;
+    }
+
+    public List<CategoryVehicle> getAll (){
+        List <CategoryVehicle> list = categoryVehicleRepository.findAll();
+        return list;
     }
 }

@@ -20,9 +20,9 @@ public class CategoryVehicle {
     private Integer id;
 
     @Column(length = 10 , unique = true , nullable = false)
-    private String name_catergory;
+    private String name_category;
 
     public CategoryVehicle(CategoryVehicleDTO categoryVehicleDTO) {
-        this.name_catergory = categoryVehicleDTO.name_catergory();
+        this.name_category = categoryVehicleDTO.name_category();
     }
 }
