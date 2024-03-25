@@ -21,7 +21,7 @@ public class CategoryVehicleController {
 
     public ResponseEntity <CategoryVehicle> save (CategoryVehicleDTO categoryVehicleDTO){
         categoryVehicleService.save(categoryVehicleDTO);
-        return  new ResponseEntity;
+        return  null;
     }
 
 }
