@@ -3,6 +3,7 @@ package br.com.revenda.controllers;
 import br.com.revenda.domain.entities.CategoryVehicle;
 import br.com.revenda.dto.CategoryVehicleDTO;
 import br.com.revenda.service.entities.CategoryVehicleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +13,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
+@Slf4j
 @RestController
 @RequestMapping("/v1/categoryVehicle/")
 public class CategoryVehicleController {
-
-    private Logger logger;
 
     @Autowired
     CategoryVehicleService categoryVehicleService;
@@ -24,8 +24,9 @@ public class CategoryVehicleController {
 
     @PostMapping("/save")
     public ResponseEntity <CategoryVehicle> save (@RequestBody  CategoryVehicleDTO categoryVehicleDTO){
-        CategoryVehicle categoryVehicle = categoryVehicleService.save(categoryVehicleDTO);
-        return  ResponseEntity.status(HttpStatus.CREATED).body(categoryVehicle);
+            CategoryVehicle categoryVehicle = categoryVehicleService.save(categoryVehicleDTO);
+            return  ResponseEntity.status(HttpStatus.CREATED).body(categoryVehicle);
+
     }
 
     @GetMapping("/getAll")
@@ -45,7 +46,6 @@ public class CategoryVehicleController {
         try {
             categoryVehicleService.delete(id);
         }catch (Exception e){
-            logger.info("Controller Delete: " + e.getMessage());
         }
         return null;
     }

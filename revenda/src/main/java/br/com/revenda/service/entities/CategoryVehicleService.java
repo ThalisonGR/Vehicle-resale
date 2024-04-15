@@ -4,6 +4,7 @@ import br.com.revenda.domain.entities.CategoryVehicle;
 import br.com.revenda.dto.CategoryVehicleDTO;
 import br.com.revenda.respository.CategoryVehicleRepository;
 import br.com.revenda.service.interfaces.ICRUD;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,9 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
+@Slf4j
 @Service
 public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , CategoryVehicleDTO> {
-    private Logger logger;
     @Autowired
     private CategoryVehicleRepository categoryVehicleRepository;
     @Override
@@ -22,10 +23,10 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
         try {
             CategoryVehicle categoryVehicle = new CategoryVehicle(categoryVehicleDTO);
             categoryVehicleRepository.save(categoryVehicle);
-            logger.info("Save sucess");
+            log.info("Save sucess");
             return categoryVehicle;
         }catch (Exception e){
-           e.getMessage();
+           log.info("Error: CategoryVehicleService: Save :" + e.getMessage());
         }
         return  null;
     }
@@ -34,8 +35,9 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     public void delete(Integer id) {
         try {
             categoryVehicleRepository.deleteById(id);
+            log.info("Delete sucess");
         }catch (Exception e){
-            logger.info("CategoryVehicleService: Delete : " + e.getMessage());
+            log.info("Error: CategoryVehicleService: Delete : " + e.getMessage());
         }
     }
 
@@ -45,10 +47,10 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
             CategoryVehicle categoryVehicle = getById(id);
             categoryVehicle.setName_category(categoryVehicleDTO.name_category());
             categoryVehicleRepository.save(categoryVehicle);
-            logger.info("Update sucess");
+            log.info("Update sucess");
             return categoryVehicle;
         }catch (Exception e){
-            logger.info("CategoryVehicleService: Update : " + e.getMessage());
+            log.info("Error: CategoryVehicleService: Update : " + e.getMessage());
         }
         return null;
     }
@@ -57,10 +59,10 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     public CategoryVehicle getById(Integer id) {
         try {
             CategoryVehicle  categoryVehicle= getById(id);
-            logger.info("GetByID sucess");
+            log.info("GetByID sucess");
             return categoryVehicle;
         }catch (Exception e){
-            logger.info("CategoryVehicleService: getByID : " + e.getMessage());
+            log.info("Error: CategoryVehicleService: getByID : " + e.getMessage());
         }
         return null;
     }
