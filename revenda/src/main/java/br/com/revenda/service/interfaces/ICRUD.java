@@ -7,7 +7,7 @@ import br.com.revenda.dto.VehicleDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface ICRUD <T,S ,R> {
+public interface ICRUD <T,S,R> {
 
     T save (R object);
     void  delete(S id);

@@ -23,32 +23,32 @@ public class CategoryVehicleController {
 
 
     @PostMapping("/save")
-    public ResponseEntity <CategoryVehicle> save (@RequestBody  CategoryVehicleDTO categoryVehicleDTO){
-            CategoryVehicle categoryVehicle = categoryVehicleService.save(categoryVehicleDTO);
-            return  ResponseEntity.status(HttpStatus.CREATED).body(categoryVehicle);
+    public ResponseEntity <CategoryVehicle> created_Category (@RequestBody  CategoryVehicleDTO categoryVehicleDTO){
+        CategoryVehicle categoryVehicle = categoryVehicleService.save(categoryVehicleDTO);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(categoryVehicle);
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryVehicle> update (@PathVariable Integer id ,@RequestBody CategoryVehicleDTO categoryVehicleDTO){
+    public ResponseEntity<CategoryVehicle> update_Category (@PathVariable Integer id ,@RequestBody CategoryVehicleDTO categoryVehicleDTO){
         CategoryVehicle categoryVehicle = categoryVehicleService.update(id, categoryVehicleDTO);
         return ResponseEntity.status(HttpStatus.OK).body(categoryVehicle);
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<CategoryVehicle>> getAll(){
+    public ResponseEntity<List<CategoryVehicle>> getAll_Category(){
         List<CategoryVehicle> list = categoryVehicleService.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<CategoryVehicle> getByID(@PathVariable Integer id){
+    public ResponseEntity<CategoryVehicle> getByID_Category(@PathVariable Integer id){
         CategoryVehicle categoryVehicle = categoryVehicleService.getById(id);
         return ResponseEntity.status(HttpStatus.OK).body(categoryVehicle);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> delete (@PathVariable Integer id){
+    public ResponseEntity<HttpStatus> delete_Category (@PathVariable Integer id){
         try {
             categoryVehicleService.delete(id);
         }catch (Exception e){
