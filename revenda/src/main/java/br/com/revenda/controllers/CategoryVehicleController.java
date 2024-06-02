@@ -29,6 +29,12 @@ public class CategoryVehicleController {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryVehicle> update (@PathVariable Integer id ,@RequestBody CategoryVehicleDTO categoryVehicleDTO){
+        CategoryVehicle categoryVehicle = categoryVehicleService.update(id, categoryVehicleDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(categoryVehicle);
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<List<CategoryVehicle>> getAll(){
         List<CategoryVehicle> list = categoryVehicleService.getAll();
