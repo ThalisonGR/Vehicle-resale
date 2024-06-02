@@ -58,9 +58,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     @Override
     public CategoryVehicle getById(Integer id) {
         try {
-            CategoryVehicle  categoryVehicle= getById(id);
-            log.info("GetByID sucess");
-            return categoryVehicle;
+            return categoryVehicleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Veiculo não existe"));
         }catch (Exception e){
             log.info("Error: CategoryVehicleService: getByID : " + e.getMessage());
         }
@@ -68,7 +66,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     }
 
     public List<CategoryVehicle> getAll (){
-        List <CategoryVehicle> list = categoryVehicleRepository.findAll();
-        return list;
+        List <CategoryVehicle> lista = categoryVehicleRepository.findAll();
+        return lista;
     }
 }
