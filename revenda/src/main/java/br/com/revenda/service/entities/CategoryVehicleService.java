@@ -23,10 +23,10 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
         try {
             CategoryVehicle categoryVehicle = new CategoryVehicle(categoryVehicleDTO);
             categoryVehicleRepository.save(categoryVehicle);
-            log.info("Save sucess");
+            log.info("Save sucess: Category");
             return categoryVehicle;
         }catch (Exception e){
-           log.info("Error: CategoryVehicleService: Save :" + e.getMessage());
+           log.info("Error: CategoryVehicleService: Save: " + e.getMessage());
         }
         return  null;
     }
@@ -35,9 +35,9 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     public void delete(Integer id) {
         try {
             categoryVehicleRepository.deleteById(id);
-            log.info("Delete sucess");
+            log.info("Delete sucess: Category");
         }catch (Exception e){
-            log.info("Error: CategoryVehicleService: Delete : " + e.getMessage());
+            log.info("Error: CategoryVehicleService: Delete: " + e.getMessage());
         }
     }
 
@@ -58,7 +58,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     @Override
     public CategoryVehicle getById(Integer id) {
         try {
-            return categoryVehicleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Veiculo não existe"));
+            return categoryVehicleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not exist category"));
         }catch (Exception e){
             log.info("Error: CategoryVehicleService: getByID : " + e.getMessage());
         }
@@ -66,7 +66,12 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     }
 
     public List<CategoryVehicle> getAll (){
-        List <CategoryVehicle> lista = categoryVehicleRepository.findAll();
-        return lista;
+        try {
+            List <CategoryVehicle> lista = categoryVehicleRepository.findAll();
+            return lista;
+        }catch (Exception e){
+            log.info("Error: CategorVehicleService: getAll: " + e.getMessage());
+        }
+        return null;
     }
 }
