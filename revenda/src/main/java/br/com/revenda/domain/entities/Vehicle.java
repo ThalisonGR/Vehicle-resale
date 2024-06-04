@@ -1,11 +1,16 @@
 package br.com.revenda.domain.entities;
 
 import br.com.revenda.dto.VehicleDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.xml.crypto.dom.DOMCryptoContext;
@@ -23,29 +28,32 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10 )
     String brand;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10)
     String model;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10 )
     Integer n_doors;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10 )
     Double motorcycle_literacy;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10 )
     Double price_vehicle;
 
-    @Column(length = 10 , unique = true , nullable = false)
+    @Column(length = 10 , unique = true )
     String plate_vehicle;
 
-    @ManyToOne
-    @JoinColumn
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+    @JoinColumn(name = "categoryVehicle_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     CategoryVehicle categoryVehicle;
 
-    @CreatedDate
+    @CreationTimestamp
     Date date_register_vehicle;
 
 
@@ -56,6 +64,6 @@ public class Vehicle {
         this.price_vehicle = vehicleDTO.price_vehicle();
         this.plate_vehicle = vehicleDTO.plate_vehicle();
         this.categoryVehicle = vehicleDTO.categoryVehicle();
-        this.date_register_vehicle = vehicleDTO.date_register_vehicle();
+        this.date_register_vehicle = vehicleDTO.date();
     }
 }
