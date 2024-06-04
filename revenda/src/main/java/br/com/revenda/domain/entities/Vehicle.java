@@ -27,6 +27,9 @@ public class Vehicle {
     String brand;
 
     @Column(length = 10 , unique = true , nullable = false)
+    String model;
+
+    @Column(length = 10 , unique = true , nullable = false)
     Integer n_doors;
 
     @Column(length = 10 , unique = true , nullable = false)
@@ -39,7 +42,7 @@ public class Vehicle {
     String plate_vehicle;
 
     @ManyToOne
-    @JoinColumn(nullable = false )
+    @JoinColumn
     CategoryVehicle categoryVehicle;
 
     @CreatedDate

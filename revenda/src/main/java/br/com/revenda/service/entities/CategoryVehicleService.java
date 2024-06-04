@@ -35,7 +35,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
     public void delete(Integer id) {
         try {
             categoryVehicleRepository.deleteById(id);
-            log.info("Delete sucess: Category");
+            log.info("Delete: sucess: Category");
         }catch (Exception e){
             log.info("Error: CategoryVehicleService: Delete: " + e.getMessage());
         }
@@ -47,7 +47,7 @@ public class CategoryVehicleService implements ICRUD<CategoryVehicle, Integer , 
             CategoryVehicle categoryVehicle = getById(id);
             categoryVehicle.setName_category(categoryVehicleDTO.name_category());
             categoryVehicleRepository.save(categoryVehicle);
-            log.info("Update sucess");
+            log.info("Update: Sucess: CategoryVehicle");
             return categoryVehicle;
         }catch (Exception e){
             log.info("Error: CategoryVehicleService: Update : " + e.getMessage());

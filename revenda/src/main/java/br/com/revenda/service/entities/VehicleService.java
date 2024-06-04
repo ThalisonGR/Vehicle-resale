@@ -31,6 +31,20 @@ public class VehicleService implements ICRUD <Vehicle , Integer , VehicleDTO> {
 
     @Override
     public Vehicle update(Integer id, VehicleDTO vehicleDTO) {
+        try{
+            Vehicle vehicle = getById(id);
+            vehicle.setBrand(vehicleDTO.brand());
+            vehicle.setModel(vehicleDTO.model());
+            vehicle.setN_doors(vehicleDTO.n_doors());
+            vehicle.setMotorcycle_literacy(vehicleDTO.motorcycle_literacy());
+            vehicle.setPrice_vehicle(vehicleDTO.price_vehicle());
+            vehicle.setPlate_vehicle(vehicleDTO.plate_vehicle());
+            vehicleRepository.save(vehicle);
+            log.info("Update: Sucess: Vehicle");
+            return vehicle;
+        }catch (Exception e){
+            log.info("Error: VehicleService: Update" + e.getMessage());
+        }
         return null;
     }
 
@@ -38,7 +52,7 @@ public class VehicleService implements ICRUD <Vehicle , Integer , VehicleDTO> {
     public void delete(Integer id) {
         try {
             vehicleRepository.deleteById(id);
-            log.info("Delete sucess: Vehicle");
+            log.info("Delete: sucess: Vehicle");
         }catch (Exception e) {
             log.info("Error: VehicleService: Delete: " + e.getMessage());
         }

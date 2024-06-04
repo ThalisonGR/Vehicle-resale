@@ -29,7 +29,7 @@ public class CategoryVehicleController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<CategoryVehicle> update_Category (@PathVariable Integer id ,@RequestBody CategoryVehicleDTO categoryVehicleDTO){
         CategoryVehicle categoryVehicle = categoryVehicleService.update(id, categoryVehicleDTO);
         return ResponseEntity.status(HttpStatus.OK).body(categoryVehicle);
