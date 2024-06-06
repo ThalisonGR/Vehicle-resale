@@ -8,10 +8,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.util.HashSet;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,6 +33,11 @@ public class CategoryVehicle implements Serializable {
 
     @Column(length = 10 , unique = true , nullable = false)
     private String name_category;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryVehicle", cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
+    private List<Vehicle> vehicles;
     public CategoryVehicle(CategoryVehicleDTO categoryVehicleDTO) {
         this.name_category = categoryVehicleDTO.name_category();
     }

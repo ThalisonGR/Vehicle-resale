@@ -47,7 +47,7 @@ public class Vehicle implements Serializable {
     private String plate_vehicle;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private CategoryVehicle categoryVehicle;
