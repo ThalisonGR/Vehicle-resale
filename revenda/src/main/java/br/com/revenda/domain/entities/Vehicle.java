@@ -1,19 +1,14 @@
 package br.com.revenda.domain.entities;
 
 import br.com.revenda.dto.VehicleDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.Date;
 
 @Data
@@ -26,39 +21,36 @@ public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @Column(length = 10 )
-    String brand;
+    private String brand;
 
     @Column(length = 10)
-    String model;
+    private String model;
 
     @Column(length = 10 )
-    Integer n_doors;
+    private Integer n_doors;
 
     @Column(length = 10 )
-    Double motorcycle_literacy;
+    private Double motorcycle_literacy;
 
     @Column(length = 10 )
-    Double price_vehicle;
+    private Double price_vehicle;
 
     @Column(length = 10 , unique = true )
-    String plate_vehicle;
+    private String plate_vehicle;
 
-
-    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
-    @JoinColumn(name = "categoryVehicle_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    CategoryVehicle categoryVehicle;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private CategoryVehicle categoryVehicle;
 
     @CreationTimestamp
     Date date_register_vehicle;
 
-
     public Vehicle(VehicleDTO vehicleDTO) {
         this.brand = vehicleDTO.brand();
+        this.model = vehicleDTO.model();
         this.n_doors = vehicleDTO.n_doors();
         this.motorcycle_literacy = vehicleDTO.motorcycle_literacy();
         this.price_vehicle = vehicleDTO.price_vehicle();
