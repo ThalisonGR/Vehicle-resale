@@ -1,6 +1,7 @@
 package br.com.revenda.domain.entities;
 
 import br.com.revenda.dto.VehicleDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -17,7 +21,8 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @Table(name = "tb_vehicle")
-public class Vehicle {
+public class Vehicle implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +46,10 @@ public class Vehicle {
     @Column(length = 10 , unique = true )
     private String plate_vehicle;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private CategoryVehicle categoryVehicle;
 
     @CreationTimestamp
