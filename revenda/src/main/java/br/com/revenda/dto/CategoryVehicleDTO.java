@@ -1,4 +1,7 @@
 package br.com.revenda.dto;
 
-public record CategoryVehicleDTO(String name_category) {
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
+public record CategoryVehicleDTO(@NotBlank(message = "Not null") String name_category) {
 }

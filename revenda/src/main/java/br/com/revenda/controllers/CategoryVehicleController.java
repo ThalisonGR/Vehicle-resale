@@ -3,10 +3,12 @@ package br.com.revenda.controllers;
 import br.com.revenda.domain.entities.CategoryVehicle;
 import br.com.revenda.dto.CategoryVehicleDTO;
 import br.com.revenda.service.entities.CategoryVehicleService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class CategoryVehicleController {
 
 
     @PostMapping("/save")
-    public ResponseEntity <CategoryVehicle> created_Category (@RequestBody  CategoryVehicleDTO categoryVehicleDTO){
+    public ResponseEntity <CategoryVehicle> created_Category ( @Valid @RequestBody  CategoryVehicleDTO categoryVehicleDTO){
         CategoryVehicle categoryVehicle = categoryVehicleService.save(categoryVehicleDTO);
         return  ResponseEntity.status(HttpStatus.CREATED).body(categoryVehicle);
 
