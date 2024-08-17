@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/register-Vehicle")
 public class VehicleController {
-
     @Autowired
     VehicleService vehicleService;
 
@@ -30,7 +29,6 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.update(id, vehicleDTO);
         return ResponseEntity.status(HttpStatus.OK).body(vehicle);
     }
-
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Vehicle>> getAll_Vehicle(){
@@ -53,6 +51,4 @@ public class VehicleController {
         }
         return null;
     }
-
-
 }
