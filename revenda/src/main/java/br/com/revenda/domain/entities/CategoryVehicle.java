@@ -1,24 +1,15 @@
 package br.com.revenda.domain.entities;
 
 import br.com.revenda.dto.CategoryVehicleDTO;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.validation.annotation.Validated;
-
 import java.io.Serializable;
-import java.util.HashSet;
-
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
