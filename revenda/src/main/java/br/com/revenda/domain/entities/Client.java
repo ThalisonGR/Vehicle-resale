@@ -101,9 +101,6 @@ public class Client {
     @Column(length = 255)
     private String observacoes;
 
-    //Vincular ao colaboradorCadastrado
-    private String responsavelCadastro;
-
     @Column(name = "ultima_atualizacao", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime ultimaAtualizacao;
