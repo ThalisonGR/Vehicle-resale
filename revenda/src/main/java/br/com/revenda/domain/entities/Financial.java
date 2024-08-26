@@ -20,5 +20,6 @@ public class Financial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    
+
+
 }
