@@ -21,8 +21,8 @@ public class CategoryVehicle implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 10 , unique = true , nullable = false)
     private String name_category;

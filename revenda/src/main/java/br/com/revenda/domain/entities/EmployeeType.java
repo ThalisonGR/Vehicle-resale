@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -13,8 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customer_types")
-public class ClientType {
+@Table(name = "employee_types")
+public class EmployeeType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,18 +26,8 @@ public class ClientType {
     @Column(length = 500)
     private String description;
 
-    @Column(name = "discount_rate", precision = 5, scale = 2)
-    private BigDecimal discountRate;
-
-    @ManyToMany(mappedBy = "clientTypes")
-    private Set<Client> clients;
-
-    //Determina a prioridade de atendimento. Valores mais baixos indicam maior prioridade.
-    @Column(name = "priority_level", nullable = false)
-    private Integer priorityLevel;
-
-    @Column(nullable = false)
-    private Boolean active;
+    @OneToMany(mappedBy = "employeeType", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Employee> employees;
 
     @Column(name = "created_at", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")

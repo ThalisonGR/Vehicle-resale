@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 public class PaymentMethod {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
     private PaymentType paymentType;

@@ -17,7 +17,7 @@ import org.yaml.snakeyaml.events.Event;
 public class Financial {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 

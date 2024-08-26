@@ -8,12 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
@@ -23,7 +22,7 @@ import java.util.Date;
 @Table(name = "tb_client")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private Boolean ativo;
@@ -81,7 +80,7 @@ public class Client {
     @Column(name = "limite_credito", precision = 10, scale = 2)
     private BigDecimal limiteCredito;
 
-    @Column(name = "limite_credito", precision = 10, scale = 2)
+    @Column(name = "saldo_devedor", precision = 10, scale = 2)
     private BigDecimal saldoDevedor;
 
     @Column(name = "forma_pagamento_preferida")
@@ -90,8 +89,19 @@ public class Client {
     @Column(nullable = false)
     @NotBlank(message = "Endereço é obrigatório")
     private String status;
-    private String tipoCliente;
+
+    @ManyToMany
+    @JoinTable(
+            name = "client_client_type",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_type_id")
+    )
+    private Set<ClientType> clientTypes;
+
+    @Column(length = 255)
     private String observacoes;
+
+    //Vincular ao colaboradorCadastrado
     private String responsavelCadastro;
 
     @Column(name = "ultima_atualizacao", updatable = false)

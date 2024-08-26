@@ -12,9 +12,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/city")
 public class CityController {
 
-    @Autowired
-    private CityService cityService;
-
-    public ResponseEntity<City> save_City(@RequestBody  )
 
 }
