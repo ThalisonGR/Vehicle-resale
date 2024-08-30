@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/city")
 public class CityController {
 
+<<<<<<< HEAD
     @Autowired
     private CityService cityService;
 
     public ResponseEntity<City> save_City(){
         return null;
     }
+=======
+>>>>>>> a2d67121eb098e5c683a5444aff64dd1b5f6dfa0
 
 }

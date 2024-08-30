@@ -1,37 +1,43 @@
 package br.com.revenda.domain.entities;
 
-import br.com.revenda.dto.CategoryVehicleDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
-@Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Table(name = "tb_category_vehicle")
-public class CategoryVehicle implements Serializable {
-    private static final long serialVersionUID = 1L;
+@AllArgsConstructor
+@Entity
+@Table(name = "customer_types")
+public class ClientType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10 , unique = true , nullable = false)
-    private String name_category;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryVehicle", cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private List<Vehicle> vehicles;
+    @Column(length = 500)
+    private String description;
+
+    @Column(name = "discount_rate", precision = 5, scale = 2)
+    private BigDecimal discountRate;
+
+    @ManyToMany(mappedBy = "clientTypes")
+    private Set<Client> clients;
+
+    //Determina a prioridade de atendimento. Valores mais baixos indicam maior prioridade.
+    @Column(name = "priority_level", nullable = false)
+    private Integer priorityLevel;
+
+    @Column(nullable = false)
+    private Boolean active;
 
     @Column(name = "created_at", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
@@ -49,9 +55,5 @@ public class CategoryVehicle implements Serializable {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
-    }
-
-    public CategoryVehicle(CategoryVehicleDTO categoryVehicleDTO) {
-        this.name_category = categoryVehicleDTO.name_category();
     }
 }
